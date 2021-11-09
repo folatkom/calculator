@@ -1,27 +1,22 @@
 let result = 0;
+let operation;
 
-document.getElementById("plus").addEventListener("click",function (){
-	let num1 = Number(document.getElementById("num1").value);
-	let	num2 = Number(document.getElementById("num2").value); 
-	result = num1+num2;	
-	document.getElementById("result").innerHTML = result;
+$("button").click(function(){
+	let num1 = Number($("#num1").val());
+	let	num2 = Number($("#num2").val()); 
+    operation = $(this).attr("id");
+    console.log(num1);
+    if (operation == "plus"){
+    	result = num1+num2;
+    }
+    else if (operation == "minus"){
+    	result = num1-num2;
+    }
+    else if (operation == "multiple"){
+    	result = num1*num2;
+    }
+    else {
+    	result = num1/num2;
+    }
+    $("#result").html(result);  
 });
-document.getElementById("minus").addEventListener("click",function (){
-	let num1 = Number(document.getElementById("num1").value);
-	let	num2 = Number(document.getElementById("num2").value); 
-	result = num1-num2;	
-	document.getElementById("result").innerHTML = result;
-});
-document.getElementById("multiple").addEventListener("click",function (){
-	let num1 = Number(document.getElementById("num1").value);
-	let	num2 = Number(document.getElementById("num2").value); 
-	result = num1*num2;	
-	document.getElementById("result").innerHTML = result;
-});
-document.getElementById("divide").addEventListener("click",function (){
-	let num1 = Number(document.getElementById("num1").value);
-	let	num2 = Number(document.getElementById("num2").value); 
-	result = num1/num2;	
-	document.getElementById("result").innerHTML = result;
-});
-
