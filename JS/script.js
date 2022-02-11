@@ -1,11 +1,12 @@
 let result = 0;
 let operation;
+const calc = document.querySelector(".calc");
+const output = document.getElementById("output");
 
-$("button").click(function(){
-	let num1 = Number($("#num1").val());
-	let	num2 = Number($("#num2").val()); 
-    operation = $(this).attr("id");
-    console.log(num1);
+document.querySelectorAll(".calc").forEach(item=>item.addEventListener("click",function(){
+	let num1 = Number(document.getElementById("num1").value);
+	let	num2 = Number(document.getElementById("num2").value); 
+    operation = this.id;
     if (operation == "plus"){
     	result = num1+num2;
     }
@@ -18,5 +19,5 @@ $("button").click(function(){
     else {
     	result = num1/num2;
     }
-    $("#result").html(result);  
-});
+    output.innerHTML = result;  
+}));
