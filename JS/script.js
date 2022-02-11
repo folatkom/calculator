@@ -16,8 +16,17 @@ document.querySelectorAll(".calc").forEach(item=>item.addEventListener("click",f
     else if (operation == "multiple"){
     	result = num1*num2;
     }
-    else {
+    else if (operation == "multiple"){
     	result = num1/num2;
+    }
+    else if (operation == "power"){
+        result = Math.pow(num1,num2)
+    }
+    else {
+        result = 1;
+        for(let i = 1; i<=num1; i++){
+            result *= i;
+        }
     }
     output.innerHTML = result;  
 }));
