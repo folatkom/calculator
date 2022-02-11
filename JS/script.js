@@ -1,32 +1,58 @@
-let result = 0;
 let operation;
-const calc = document.querySelector(".calc");
 const output = document.getElementById("output");
+let num1 = "";
+let num2 = ""; 
+let nextNum = false;
 
-document.querySelectorAll(".calc").forEach(item=>item.addEventListener("click",function(){
-	let num1 = Number(document.getElementById("num1").value);
-	let	num2 = Number(document.getElementById("num2").value); 
-    operation = this.id;
+const calculate = (n1,n2) => {
+    n1=Number(n1);
+    n2=Number(n2);
     if (operation == "plus"){
-    	result = num1+num2;
+    	result = n1+n2;
     }
     else if (operation == "minus"){
-    	result = num1-num2;
+    	result = n1-n2;
     }
     else if (operation == "multiple"){
-    	result = num1*num2;
+    	result = n1*n2;
     }
-    else if (operation == "multiple"){
-    	result = num1/num2;
+    else if (operation == "divide"){
+    	result = n1/n2;
     }
     else if (operation == "power"){
-        result = Math.pow(num1,num2)
+        result = Math.pow(n1,n2);
     }
-    else {
+    else if (operation == "factorial"){
         result = 1;
-        for(let i = 1; i<=num1; i++){
+        for(let i = 1; i<=n1; i++){
             result *= i;
         }
     }
-    output.innerHTML = result;  
+    return result;
+};
+
+document.querySelectorAll(".num").forEach(item=>item.addEventListener("click", function(){
+    if(nextNum == false){
+        num1+=this.innerHTML;
+        output.innerHTML = num1;
+    }
+    else {
+        num2+=this.innerHTML;
+        output.innerHTML = num2;
+    }     
 }));
+
+document.querySelectorAll(".calc").forEach(item=>item.addEventListener("click", function(){
+    if (nextNum == false) {
+        nextNum = true;
+        operation = this.id;
+    }
+    else {
+        outputIsReady = true;
+        output.innerHTML = calculate(num1,num2);
+        num1=output.innerHTML;
+        num2 = "";
+        operation = this.id;
+    }
+}));
+

@@ -3,29 +3,37 @@
 	font-family: candara;
 }
 #calculator{
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 250px;
 	background-color: gray;
-	margin:350px auto;
-	padding: 20px;
+	margin:250px auto;
+	padding: 40px;
 	text-align: center;
 	border-radius: 50px;
 	border: 2px solid black;
 }
-input{
+#container{
+	display: flex;
+	justify-content: space-between;
+}
+#output{
 	width: 100px;
+	height: 20px;
+	background-color: #FFF;
 	margin:auto;
 	border-radius: 5px;
 	margin-bottom: 5px;
+}
+#numbers{
+	width: 100px;
+}
+#buttons{
+	width: 70px;
 }
 button{
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
-}
-#buttons{
-	margin-bottom: 15px;
-	margin-top: 10px;
 }
 #result{
 	width: 100px;
