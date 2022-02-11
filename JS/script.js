@@ -26,12 +26,24 @@ const calculate = (n1,n2) => {
     	result = n1/n2;
     }
     else if (operation == "power") {
-        result = Math.pow(n1,n2);
+        if(!Number.isInteger(n1) || !Number.isInteger(n2)){
+            alert("Power calculating only for integers");
+            result = n1;
+        }
+        else {
+            result = Math.pow(n1,n2); 
+        }
     }
     else if (operation == "factorial") {
-        result = 1;
-        for (let i = 1; i<=n1; i++) {
-            result *= i;
+        if (!Number.isInteger(n1)) {
+            alert("Factorial calculating only for integers");
+            result = n1;
+        }
+        else {
+            result = 1;
+            for (let i = 1; i<=n1; i++) {
+                result *= i;
+            }            
         }
     }
     return result;
