@@ -133,6 +133,8 @@ document.querySelectorAll(".calc").forEach(item => item.addEventListener("click"
 chosen.addEventListener("click", function(){
     document.querySelectorAll(".num").forEach(item => item.replaceWith(item.cloneNode(true)));
     document.querySelectorAll(".calc").forEach(item => item.replaceWith(item.cloneNode(true)));
+    document.querySelectorAll(".calcActive").forEach(item => item.replaceWith(item.cloneNode(true)));
+    document.querySelectorAll(".numActive").forEach(item => item.replaceWith(item.cloneNode(true)));
     
     startMessage.classList.add("invisible");
     output.classList.remove("invisible");
