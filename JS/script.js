@@ -1,10 +1,10 @@
-let operation;
 const startMessage = document.getElementById("startMessage");
 const output = document.getElementById("output");
 const equals = document.getElementById("equals");
 const ce = document.getElementById("ce");
 const c = document.getElementById("c");
 const chosen = document.getElementById("chosen");
+let operation;
 let num1 = "";
 let num2 = ""; 
 let spareNum = "";
@@ -49,7 +49,7 @@ const calculate = (n1,n2) => {
         }
     }
     return result;
-};
+}
 
 const calculatorReady = () => {
     document.querySelectorAll(".num").forEach(item => item.classList.add("inactive"));
@@ -133,8 +133,13 @@ document.querySelectorAll(".calc").forEach(item => item.addEventListener("click"
 chosen.addEventListener("click", function(){
     document.querySelectorAll(".num").forEach(item => item.replaceWith(item.cloneNode(true)));
     document.querySelectorAll(".calc").forEach(item => item.replaceWith(item.cloneNode(true)));
-    chosen.replaceWith(chosen.cloneNode(true));
+    
     startMessage.classList.add("invisible");
     output.classList.remove("invisible");
+    chosen.classList.add("inactive");
+    equals.classList.remove("inactive");
+    c.classList.remove("inactive");
+    ce.classList.remove("inactive");
+    chosen.replaceWith(chosen.cloneNode(true));
     calculatorReady();
 });

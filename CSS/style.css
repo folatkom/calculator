@@ -1,67 +1,83 @@
 *{
 	box-sizing: border-box;
 	font-family: candara;
+	font-size: 25px;
+}
+body{
+	background-color: rgb(245, 245, 220);
 }
 .invisible{
 	display: none;
 }
 #calculator{
-	width: 300px;
-	height: 250px;
-	background-color: gray;
+	width: 550px;
+	height: 450px;
+	background: url("background.jpg");
 	margin:250px auto;
 	padding: 20px 40px;
 	text-align: center;
-	border-radius: 50px;
-	border: 2px solid black;
+	border: 3px outset;
+	border-top-color: rgb(118, 118, 118);
+	border-left-color: rgb(118, 118, 118);
+	border-right-color: rgb(59, 59, 59);
+	border-bottom-color: rgb(59, 59, 59);
+	border-radius: 20px;
 }
 #topContainer{
-	width: 200px;
-	height: 50px;
-	padding: 5px;
+	width: 400px;
+	height: 100px;
 	margin: auto;	
+	padding-top: 10px;
+}
+#startMessage,#output{
+	height: 50px;
+	background-color: #FFF;
+	border: 3px inset;
+	border-top-color: rgb(118, 118, 118);
+	border-left-color: rgb(118, 118, 118);;
+	border-right-color: rgb(211, 211, 211);
+	border-bottom-color: rgb(211, 211, 211);
+	border-radius: 5px;
+	margin: auto;
+	line-height: 21px;
+}
+#startMessage{
+	padding:0 30px;
+}
+#output{
+	font-size: 35px;
+	line-height: 40px;
 }
 #container{
 	display: flex;
 	justify-content: space-around;
 }
-#output{
-	width: 100px;
-	height: 20px;
-	background-color: #FFF;
-	margin:auto;
-	border-radius: 5px;
-}
 #numbers{
-	width: 100px;
+	width: 200px;
 }
 #buttons{
-	width: 70px;
+	width: 150px;
 }
 button{
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 }
-#result{
-	width: 100px;
-	margin: 5px auto;
-	border-radius: 5px;
-	background-color: white;
-	overflow: hidden;
-}
-.numActive{
-	background-color: aqua;
-}
-.calcActive{
-	background-color: blueviolet;
+.numActive, .calcActive{
+	background-color: rgb(166, 170, 111);
 }
 .inactive{
 	color: #FFF;
+	background-color: rgb(239, 239, 239)!important;
     border-style: outset;
 }
 .functionalButton{
-	width: 60px;
-	border-radius: 5px;
-	line-height: 10px;
+	width: 100px;
+	border-radius: 10px;
+	line-height: 20px;
+	margin-top: 20px;
+
+}
+#equals, #c, #ce{
+	background-color: rgb(224, 145, 42);	
 }
