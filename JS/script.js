@@ -122,12 +122,12 @@ const calculatorReady = () => {
 }
 
 document.querySelectorAll(".num").forEach(item => item.addEventListener("click", function(){
-    this.classList.add("numActive");
-    this.classList.remove("num");
+    this.classList.toggle("numActive");
+    this.classList.toggle("num");
 }));
 document.querySelectorAll(".calc").forEach(item => item.addEventListener("click", function(){
-    this.classList.add("calcActive");
-    this.classList.remove("calc");
+    this.classList.toggle("calcActive");
+    this.classList.toggle("calc");
 }))
 
 chosen.addEventListener("click", function(){
