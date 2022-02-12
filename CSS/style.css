@@ -70,12 +70,13 @@ button{
 	border-right-color: rgb(59, 59, 59);
 	border-bottom-color: rgb(59, 59, 59);
 	text-align: center;
+	padding: 0;
 }
 button:active{
 	border-top-color: rgb(59, 59, 59);
 	border-left-color: rgb(59, 59, 59);
-	border-right-color: rgb(118, 118, 118);
-	border-bottom-color: rgb(118, 118, 118);
+	border-right-color: rgb(239, 239, 239);
+	border-bottom-color: rgb(239, 239, 239);
 }
 .numActive, .calcActive{
 	background-color: rgb(166, 170, 111);
