@@ -7,8 +7,9 @@
 </head>
 <body>
 	<div id="calculator">
-		<div>
-			<div id="output"></div>
+		<div id="topContainer">
+			<div id="startMessage">Choose numbers and operations you need</div>
+			<div id="output" class="invisible"></div>
 		</div>
 		<div id="container">
 			<div id="numbers">
@@ -24,6 +25,7 @@
 				<button class="num">0</button>
 				<button class="num">.</button>
 				<button id="equals">=</button>
+				<button id="chosen" class="functionalButton">Confirm buttons</button>
 			</div>
 			<div id="buttons">
 				<button id="plus" class="calc">+</button>
@@ -34,6 +36,7 @@
 				<button id="factorial" class="calc">!</button>
 				<button id="ce">CE</button>
 				<button id="c">C</button>
+				<a href="index.html"><button id="chosen" class="functionalButton">Reset buttons</button></a>
 			</div>
 		</div>
 	</div>

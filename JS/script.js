@@ -1,8 +1,10 @@
 let operation;
+const startMessage = document.getElementById("startMessage");
 const output = document.getElementById("output");
 const equals = document.getElementById("equals");
 const ce = document.getElementById("ce");
 const c = document.getElementById("c");
+const chosen = document.getElementById("chosen");
 let num1 = "";
 let num2 = ""; 
 let spareNum = "";
@@ -49,67 +51,90 @@ const calculate = (n1,n2) => {
     return result;
 };
 
-document.querySelectorAll(".num").forEach(item => item.addEventListener("click", function() {
-    if (isEqualsClicked && isCEClicked == false) {
+const calculatorReady = () => {
+    document.querySelectorAll(".num").forEach(item => item.classList.add("inactive"));
+    document.querySelectorAll(".calc").forEach(item => item.classList.add("inactive"));
+
+    document.querySelectorAll(".numActive").forEach(item => item.addEventListener("click", function() {
+        if (isEqualsClicked && isCEClicked == false) {
+            num1 = "";
+            num2 = "";
+            isEqualsClicked = false; 
+        }
+        isCEClicked == false;
+        if(nextNum == false) {
+            num1 += this.innerHTML;
+            spareNum = num1;
+            output.innerHTML = num1;
+        }
+        else {
+            num2 += this.innerHTML;
+            output.innerHTML = num2;
+        }     
+    }));
+
+    document.querySelectorAll(".calcActive").forEach(item => item.addEventListener("click", function() {
+        isCEClicked = false;
+        if (isEqualsClicked) {
+            operation = "";
+            isEqualsClicked = false;
+        }
+
+        if (nextNum == false) {
+            nextNum = true;
+        }
+        else {
+            spareNum = num1;
+            output.innerHTML = calculate(num1,num2);
+            num1 = output.innerHTML;
+            num2 = "";
+        }
+        operation = this.id;
+    }));
+
+    equals.addEventListener("click", function() {
+        if (nextNum) {
+            spareNum = num1;
+            output.innerHTML = calculate(num1,num2);
+            num1 = output.innerHTML;
+            isEqualsClicked = true;
+        }
+    })
+
+    c.addEventListener("click", function() { 
+        output.innerHTML = "";
         num1 = "";
         num2 = "";
-        isEqualsClicked = false; 
-    }
-    isCEClicked == false;
-    if(nextNum == false) {
-        num1 += this.innerHTML;
-        spareNum = num1;
-        output.innerHTML = num1;
-    }
-    else {
-        num2 += this.innerHTML;
-        output.innerHTML = num2;
-    }     
+        nextNum = false;
+    });
+
+    ce.addEventListener("click", function() {
+        isCEClicked = true;
+        if (nextNum == false) {
+            num1 = "";
+        }
+        else {
+            num1 = spareNum;
+            num2 = "";
+        }
+        output.innerHTML = "";
+    });    
+}
+
+document.querySelectorAll(".num").forEach(item => item.addEventListener("click", function(){
+    this.classList.add("numActive");
+    this.classList.remove("num");
 }));
+document.querySelectorAll(".calc").forEach(item => item.addEventListener("click", function(){
+    this.classList.add("calcActive");
+    this.classList.remove("calc");
+}))
 
-document.querySelectorAll(".calc").forEach(item => item.addEventListener("click", function() {
-    isCEClicked = false;
-    if (isEqualsClicked) {
-        operation = "";
-        isEqualsClicked = false;
-    }
-
-    if (nextNum == false) {
-        nextNum = true;
-    }
-    else {
-        spareNum = num1;
-        output.innerHTML = calculate(num1,num2);
-        num1 = output.innerHTML;
-        num2 = "";
-    }
-    operation = this.id;
-}));
-
-equals.addEventListener("click", function() {
-    if (nextNum) {
-        spareNum = num1;
-        output.innerHTML = calculate(num1,num2);
-        num1 = output.innerHTML;
-        isEqualsClicked = true;
-    }
-})
-
-c.addEventListener("click", function() { 
-    output.innerHTML = "";
-    num1 = "";
-    num2 = "";
-    nextNum = false;
-});
-
-ce.addEventListener("click", function() {
-    isCEClicked = true;
-    if (nextNum == false) {
-        num1 = "";
-    }
-    else {
-        num1 = spareNum;
-        num2 = "";
-    }
-    output.innerHTML = "";
+chosen.addEventListener("click", function(){
+    document.querySelectorAll(".num").forEach(item => item.replaceWith(item.cloneNode(true)));
+    document.querySelectorAll(".calc").forEach(item => item.replaceWith(item.cloneNode(true)));
+    chosen.replaceWith(chosen.cloneNode(true));
+    startMessage.classList.add("invisible");
+    output.classList.remove("invisible");
+    calculatorReady();
 });

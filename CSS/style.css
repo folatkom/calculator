@@ -2,19 +2,28 @@
 	box-sizing: border-box;
 	font-family: candara;
 }
+.invisible{
+	display: none;
+}
 #calculator{
 	width: 300px;
 	height: 250px;
 	background-color: gray;
 	margin:250px auto;
-	padding: 40px;
+	padding: 20px 40px;
 	text-align: center;
 	border-radius: 50px;
 	border: 2px solid black;
 }
+#topContainer{
+	width: 200px;
+	height: 50px;
+	padding: 5px;
+	margin: auto;	
+}
 #container{
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 #output{
 	width: 100px;
@@ -22,7 +31,6 @@
 	background-color: #FFF;
 	margin:auto;
 	border-radius: 5px;
-	margin-bottom: 5px;
 }
 #numbers{
 	width: 100px;
@@ -41,4 +49,19 @@ button{
 	border-radius: 5px;
 	background-color: white;
 	overflow: hidden;
+}
+.numActive{
+	background-color: aqua;
+}
+.calcActive{
+	background-color: blueviolet;
+}
+.inactive{
+	color: #FFF;
+    border-style: outset;
+}
+.functionalButton{
+	width: 60px;
+	border-radius: 5px;
+	line-height: 10px;
 }
