@@ -34,10 +34,10 @@ body{
 	height: 50px;
 	background-color: #FFF;
 	border: 3px inset;
-	border-top-color: rgb(118, 118, 118);
-	border-left-color: rgb(118, 118, 118);;
-	border-right-color: rgb(211, 211, 211);
-	border-bottom-color: rgb(211, 211, 211);
+	border-top-color: rgb(59, 59, 59);
+	border-left-color: rgb(59, 59, 59);
+	border-right-color: rgb(118, 118, 118);
+	border-bottom-color: rgb(118, 118, 118);
 	border-radius: 5px;
 	margin: auto;
 	line-height: 21px;
@@ -74,8 +74,8 @@ button{
 button:active{
 	border-top-color: rgb(59, 59, 59);
 	border-left-color: rgb(59, 59, 59);
-	border-right-color: rgb(239, 239, 239);
-	border-bottom-color: rgb(239, 239, 239);
+	border-right-color: rgb(118, 118, 118);
+	border-bottom-color: rgb(118, 118, 118);
 }
 .numActive, .calcActive{
 	background-color: rgb(166, 170, 111);
