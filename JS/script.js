@@ -75,7 +75,7 @@ const calculatorReady = () => {
     document.querySelectorAll(".num").forEach(item => item.classList.add("inactive"));
     document.querySelectorAll(".calc").forEach(item => item.classList.add("inactive"));
 
-    document.querySelectorAll(".numActive").forEach(item => item.addEventListener("click", function() {
+    document.querySelectorAll(".numActive").forEach(item => item.addEventListener("click", () => {
         if (isEqualsClicked && isCEClicked == false) {
             num1 = "";
             num2 = "";
@@ -87,23 +87,23 @@ const calculatorReady = () => {
             isCEClicked = false;
         }
         if(nextNum == false) {
-            num1 += this.innerHTML;
+            num1 += item.innerHTML;
             spareNum = num1;
             output.innerHTML = num1;
         }
         else {
-            num2 += this.innerHTML;
+            num2 += item.innerHTML;
             output.innerHTML = num2;
         }           
     }));
 
-    document.querySelectorAll(".calcActive").forEach(item => item.addEventListener("click", function() {
+    document.querySelectorAll(".calcActive").forEach(item => item.addEventListener("click", () => {
         isCEClicked = false;
         if (isEqualsClicked) {
             operation = "";
             isEqualsClicked = false;
         }
-        if (this.id != "factorial"){
+        if (item.id != "factorial"){
             if (nextNum == false) {
                 nextNum = true;
             }
@@ -113,10 +113,10 @@ const calculatorReady = () => {
                 num1 = output.innerHTML;
                 num2 = "";
             }
-            operation = this.id;
+            operation = item.id;
         }
         else {
-            operation = this.id;
+            operation = item.id;
             if (nextNum) {
                 spareNum = num1;
                 num2 = output.innerHTML;
@@ -131,7 +131,7 @@ const calculatorReady = () => {
         }
     }));
 
-    equals.addEventListener("click", function() {
+    equals.addEventListener("click", () => {
         if (nextNum) {
             spareNum = num1;
             if (operation == "factorial") {
@@ -149,14 +149,14 @@ const calculatorReady = () => {
         isEqualsClicked = true;
     });
 
-    c.addEventListener("click", function() { 
+    c.addEventListener("click", () => { 
         output.innerHTML = "";
         num1 = "";
         num2 = "";
         nextNum = false;
     });
 
-    ce.addEventListener("click", function() {
+    ce.addEventListener("click", () => {
         isCEClicked = true;
         if (nextNum == false) {
             num1 = "";
@@ -169,16 +169,16 @@ const calculatorReady = () => {
     });    
 };
 
-document.querySelectorAll(".num").forEach(item => item.addEventListener("click", function(){
-    this.classList.toggle("numActive");
-    this.classList.toggle("num");
+document.querySelectorAll(".num").forEach(item => item.addEventListener("click", () => {
+    item.classList.toggle("numActive");
+    item.classList.toggle("num");
 }));
-document.querySelectorAll(".calc").forEach(item => item.addEventListener("click", function(){
-    this.classList.toggle("calcActive");
-    this.classList.toggle("calc");
+document.querySelectorAll(".calc").forEach(item => item.addEventListener("click", () => {
+    item.classList.toggle("calcActive");
+    item.classList.toggle("calc");
 }));
 
-chosen.addEventListener("click", function(){
+chosen.addEventListener("click", () => {
     document.querySelectorAll(".num").forEach(item => item.replaceWith(item.cloneNode(true)));
     document.querySelectorAll(".calc").forEach(item => item.replaceWith(item.cloneNode(true)));
     document.querySelectorAll(".calcActive").forEach(item => item.replaceWith(item.cloneNode(true)));
