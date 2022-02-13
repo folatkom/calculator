@@ -13,8 +13,6 @@ let isEqualsClicked = false;
 let isCEClicked = false;
 
 const calculate = (n1,n2) => {
-    console.log(n1)
-    console.log(n2)
     n1 = Number(n1);
     if (n2 !== "")  {
         n2 = Number(n2);
@@ -40,10 +38,16 @@ const calculate = (n1,n2) => {
             }
         }
         else if (operation == "factorial") {
-            result = n1;
-            n1=""
-            n2=""
-            operation = ""
+            if (!Number.isInteger(n2)) {
+                alert("Factorial calculating only for integers");
+                result = n2;
+            }
+            else {
+                result = 1;
+                for (let i = 1; i <= n2; i++) {
+                    result *= i;
+                }            
+            }
         }        
     }
     else {
@@ -58,8 +62,6 @@ const calculate = (n1,n2) => {
                     result *= i;
                 }            
             }
-            n1="";
-            operation = ""
         }
         else{
             result = n1;
@@ -74,59 +76,77 @@ const calculatorReady = () => {
 
     document.querySelectorAll(".numActive").forEach(item => item.addEventListener("click", function() {
         if (isEqualsClicked && isCEClicked == false) {
-            num1 = this.innerHTML;
-            output.innerHTML = num1;
+            num1 = "";
             num2 = "";
+            nextNum = false;
             isEqualsClicked = false; 
         }
-        else{
-            isCEClicked == false;
-            if(nextNum == false) {
-                num1 += this.innerHTML;
-                spareNum = num1;
-                output.innerHTML = num1;
-            }
-            else {
-                num2 += this.innerHTML;
-                output.innerHTML = num2;
-            }             
+        else if (isCEClicked) {
+            num2 = "";
+            isCEClicked = false;
         }
-    
+        if(nextNum == false) {
+            num1 += this.innerHTML;
+            spareNum = num1;
+            output.innerHTML = num1;
+        }
+        else {
+            num2 += this.innerHTML;
+            output.innerHTML = num2;
+        }           
     }));
 
     document.querySelectorAll(".calcActive").forEach(item => item.addEventListener("click", function() {
         isCEClicked = false;
         if (isEqualsClicked) {
             operation = "";
-            num2 = ""
             isEqualsClicked = false;
         }
-
-        if (nextNum == false) {
-            nextNum = true;
+        if (this.id != "factorial"){
+            if (nextNum == false) {
+                nextNum = true;
+            }
+            else {
+                spareNum = num1;
+                output.innerHTML = calculate(num1,num2);
+                num1 = output.innerHTML;
+                num2 = "";
+            }
+            operation = this.id;
         }
         else {
-            spareNum = num1;
-            output.innerHTML = calculate(num1,num2);
-            num1 = output.innerHTML;
-            num2 = "";
+            operation = this.id;
+            if (nextNum) {
+                spareNum = num1;
+                num2 = output.innerHTML;
+                output.innerHTML = calculate(num1,num2);
+                num1 = output.innerHTML;
+            }
+            else {
+                output.innerHTML = calculate(num1,num2);
+                num1 = output.innerHTML;
+            }
+            isEqualsClicked = true;           
         }
-        operation = this.id;
     }));
 
     equals.addEventListener("click", function() {
-
         if (nextNum) {
             spareNum = num1;
+            if (operation == "factorial") {
+                num2 = output.innerHTML;
+            }
             output.innerHTML = calculate(num1,num2);
             num1 = output.innerHTML;
         }
         else {
-            output.innerHTML = num1;
-            num1="";
+            if (operation == "factorial") {
+                num1 = output.innerHTML;  
+            }
+            output.innerHTML = calculate(num1,num2);
         }
         isEqualsClicked = true;
-    })
+    });
 
     c.addEventListener("click", function() { 
         output.innerHTML = "";
@@ -146,7 +166,7 @@ const calculatorReady = () => {
         }
         output.innerHTML = "";
     });    
-}
+};
 
 document.querySelectorAll(".num").forEach(item => item.addEventListener("click", function(){
     this.classList.toggle("numActive");
@@ -155,7 +175,7 @@ document.querySelectorAll(".num").forEach(item => item.addEventListener("click",
 document.querySelectorAll(".calc").forEach(item => item.addEventListener("click", function(){
     this.classList.toggle("calcActive");
     this.classList.toggle("calc");
-}))
+}));
 
 chosen.addEventListener("click", function(){
     document.querySelectorAll(".num").forEach(item => item.replaceWith(item.cloneNode(true)));
