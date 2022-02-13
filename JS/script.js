@@ -13,39 +13,56 @@ let isEqualsClicked = false;
 let isCEClicked = false;
 
 const calculate = (n1,n2) => {
-    n1=Number(n1);
-    n2=Number(n2);
-    if (operation == "plus") {
-    	result = n1+n2;
-    }
-    else if (operation == "minus") {
-    	result = n1-n2;
-    }
-    else if (operation == "multiple") {
-    	result = n1*n2;
-    }
-    else if (operation == "divide") {
-    	result = n1/n2;
-    }
-    else if (operation == "power") {
-        if(!Number.isInteger(n1) || !Number.isInteger(n2)){
-            alert("Power calculating only for integers");
+    console.log(n1)
+    console.log(n2)
+    n1 = Number(n1);
+    if (n2 !== "")  {
+        n2 = Number(n2);
+        if (operation == "plus") {
+            result = n1+n2;
+        }
+        else if (operation == "minus") {
+            result = n1-n2;
+        }
+        else if (operation == "multiple") {
+            result = n1*n2;
+        }
+        else if (operation == "divide") {
+            result = n1/n2;
+        }
+        else if (operation == "power") {
+            if(!Number.isInteger(n1) || !Number.isInteger(n2)){
+                alert("Power calculating only for integers");
+                result = n1;
+            }
+            else {
+                result = Math.pow(n1,n2); 
+            }
+        }
+        else if (operation == "factorial") {
             result = n1;
-        }
-        else {
-            result = Math.pow(n1,n2); 
-        }
+            n1=""
+            n2=""
+            operation = ""
+        }        
     }
-    else if (operation == "factorial") {
-        if (!Number.isInteger(n1)) {
-            alert("Factorial calculating only for integers");
-            result = n1;
+    else {
+        if (operation == "factorial") {
+            if (!Number.isInteger(n1)) {
+                alert("Factorial calculating only for integers");
+                result = n1;
+            }
+            else {
+                result = 1;
+                for (let i = 1; i <= n1; i++) {
+                    result *= i;
+                }            
+            }
+            n1="";
+            operation = ""
         }
-        else {
-            result = 1;
-            for (let i = 1; i<=n1; i++) {
-                result *= i;
-            }            
+        else{
+            result = n1;
         }
     }
     return result;
@@ -57,26 +74,31 @@ const calculatorReady = () => {
 
     document.querySelectorAll(".numActive").forEach(item => item.addEventListener("click", function() {
         if (isEqualsClicked && isCEClicked == false) {
-            num1 = "";
+            num1 = this.innerHTML;
+            output.innerHTML = num1;
             num2 = "";
             isEqualsClicked = false; 
         }
-        isCEClicked == false;
-        if(nextNum == false) {
-            num1 += this.innerHTML;
-            spareNum = num1;
-            output.innerHTML = num1;
+        else{
+            isCEClicked == false;
+            if(nextNum == false) {
+                num1 += this.innerHTML;
+                spareNum = num1;
+                output.innerHTML = num1;
+            }
+            else {
+                num2 += this.innerHTML;
+                output.innerHTML = num2;
+            }             
         }
-        else {
-            num2 += this.innerHTML;
-            output.innerHTML = num2;
-        }     
+    
     }));
 
     document.querySelectorAll(".calcActive").forEach(item => item.addEventListener("click", function() {
         isCEClicked = false;
         if (isEqualsClicked) {
             operation = "";
+            num2 = ""
             isEqualsClicked = false;
         }
 
@@ -93,12 +115,17 @@ const calculatorReady = () => {
     }));
 
     equals.addEventListener("click", function() {
+
         if (nextNum) {
             spareNum = num1;
             output.innerHTML = calculate(num1,num2);
             num1 = output.innerHTML;
-            isEqualsClicked = true;
         }
+        else {
+            output.innerHTML = num1;
+            num1="";
+        }
+        isEqualsClicked = true;
     })
 
     c.addEventListener("click", function() { 
