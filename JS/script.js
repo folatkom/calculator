@@ -67,8 +67,9 @@ const calculate = (n1,n2) => {
             result = n1;
         }
     }
+    result = Number(result.toPrecision(12));
     return result;
-}
+};
 
 const calculatorReady = () => {
     document.querySelectorAll(".num").forEach(item => item.classList.add("inactive"));
