@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Calculator</title>
-	<link rel="stylesheet" type="text/css" href="../CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 <body>
 	<div id="calculator">
@@ -45,6 +45,6 @@
 			<a href="index.html"><button class="functionalButton">Reset buttons</button></a>			
 		</div>
 	</div>
-<script src="../JS/script.js"></script>
+<script src="JS/script.js"></script>
 </body>
 </html>
